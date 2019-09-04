@@ -4,9 +4,13 @@
 require('classes/atributos.class.php');
 require('includes/header.php');
 
+//$Atributo = new AtributosIP('192.168.0.100', '25', '255.255.255.0');
+
+
 ?>
 <hr>
 <div class="container">
+	<form method="POST" action="calcular.php">
 	<div class="form-row">
 		<div class="form group col-md-5">
 			<label for="ip_input"><b>Endereço IP</b></label>

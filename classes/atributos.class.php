@@ -2,16 +2,17 @@
 
 class AtributosIP
 {
-	private $IP;
-	private $CIDR;
-	private $NETMASK;
+	public $IP;
+	public $CIDR;
+	public $NETMASK;
+	//private $GRUPOS;
 
 	function __construct($IP, $CIDR, $NETMASK)
 	{
 		$this->IP = $IP;
 		$this->CIDR = $CIDR;
 		$this->NETMASK = $NETMASK;
-		$this->RetornarAtributos();
+		//$this->RetornarAtributos();
 	}
 
 	function RetornarAtributos()
