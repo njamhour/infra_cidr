@@ -4,9 +4,6 @@
 require('classes/atributos.class.php');
 require('includes/header.php');
 
-//$Atributo = new AtributosIP('192.168.0.100', '25', '255.255.255.0');
-
-
 ?>
 <hr>
 <div class="container">
