@@ -10,14 +10,22 @@ require('includes/header.php');
 ?>
 <hr>
 <div class="container">
-	<form class="form-inline" method="POST" action="/calculo.php">
-		<div class="form-group">
-			<label for="ip_input">IP:</label>
+	<div class="form-row">
+		<div class="form group col-md-5">
+			<label for="ip_input"><b>Endereço IP</b></label>
 			<input type="text" name="ip_input" id="ip_input" class="form-control" placeholder="192.168.0.1">
-			<label for="cidr_input">CIDR:</label>
-			<input type="number" name="cidr_input" id="cidr_input" class="form-control" placeholder="24">
-			<label for="netmask_input">NETMASK:</label>
+		</div>
+		<div class="form group col-md-5">
+			<label for="netmask_input"><b>NETMASK:</b></label>
 			<input type="text" name="netmask_input" id="netmask_input" class="form-control" placeholder="255.255.255.0">
 		</div>
+		<div class="form group col-md-2">
+			<label for="cidr_input"><b>CIDR:</b></label>
+			<input type="number" name="cidr_input" id="cidr_input" class="form-control" placeholder="24">
+		</div>
+	</div>
+	<div class=form-group>
+		<button type="submit" class="btn btn-primary">Enviar</button>
+	</div>
 	</form> 
 </div>
