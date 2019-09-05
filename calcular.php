@@ -3,12 +3,54 @@
 require('classes/atributos.class.php');
 require('includes/header.php');
 
-$Atributos = new AtributosIP($_POST['ip_input'], $_POST['cidr_input'], $_POST['netmask_input']);
+// Requisitos necessários para realizar os calculos
+
+// Primeiro requisito, IP e CIDR
+if (
+	isset($_POST['ip_input']) && !empty($_POST['ip_input']) 
+	&& 
+	isset($_POST['cidr_input']) && !empty($_POST['cidr_input'])
+	)
+{
+	$IP = $_POST['ip_input'];
+	$CIDR = $_POST['cidr_input'];
+	$netmask = "";
+	$host_inicial = "";
+	$host_final = "";
+	$broadcast = "";
+
+	$Atributos = new AtributosIP
+							(
+								$IP, 
+								$CIDR, 
+								$netmask, 
+								$host_inicial,
+								$host_final,
+								$broadcast
+							);
+}
+else
+{
+	echo "Ocorreu algum erro";
+}
+
+/*$Atributos = new AtributosIP(
+								$_POST['ip_input'], 
+								$_POST['cidr_input'], 
+								$_POST['netmask_input'], 
+								$_POST['host_inicial_input'],
+								$_POST['host_final_input'],
+								$_POST['broadcast']
+							);*/
+
+
 //print_r($Atributos->ExplodirIP('255.255.255.0')[0]);
 //$Atributos->ExplodirIP($IP);
 ?>
 
 <div class="container">
+
+	<h4>Informações Gerais</h4>
 	<table class="table table-hover table-bordered table-stripped">
 		<tr>
 			<th>Endereço IP</th>
@@ -30,7 +72,7 @@ $Atributos = new AtributosIP($_POST['ip_input'], $_POST['cidr_input'], $_POST['n
 		<tr>
 			<th>IP Inicial</th>
 			<th>IP Final</th>
-			<th>Quantiade de Grupos</th>
+			<th>Quantidade de Grupos</th>
 		</tr>
 
 		<tr>
@@ -56,6 +98,13 @@ $Atributos = new AtributosIP($_POST['ip_input'], $_POST['cidr_input'], $_POST['n
 			<td><?php $Atributos->RetornarOctetoBinario(1); ?></td>
 			<td><?php $Atributos->RetornarOctetoBinario(2); ?></td>
 			<td><?php $Atributos->RetornarOctetoBinario(3); ?></td>
+		</tr>
+
+		<tr>
+			<td><?php $Atributos->RetornarOcteto(0); ?></td>
+			<td><?php $Atributos->RetornarOcteto(1); ?></td>
+			<td><?php $Atributos->RetornarOcteto(2); ?></td>
+			<td><?php $Atributos->RetornarOcteto(3); ?></td>
 		</tr>
 	</table>
 </div>
