@@ -58,3 +58,5 @@ if ($b = 255)
         $CidrC++;
     }
 }
+?>
+<a href="http://www.netadm.com.br/tabela-cidr/">Tabela Cidr</a>
