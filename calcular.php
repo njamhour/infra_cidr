@@ -3,15 +3,19 @@
 require('classes/atributos.class.php');
 require('includes/header.php');
 
+
+//$Atributos = new AtributosIP("", "", "", "", "", "");
+
+//ValidarRequisitos($_POST['ip_input'], $_POST['cidr_input']);
+//ValidarRequisitos("192.168.20.20", 24);
 // Requisitos necessários para realizar os calculos
 
 // Primeiro requisito, IP e CIDR
 if (
-	isset($_POST['ip_input']) && !empty($_POST['ip_input']) 
-	&& 
+	isset($_POST['ip_input']) && !empty($_POST['ip_input'])
+	&&
 	isset($_POST['cidr_input']) && !empty($_POST['cidr_input'])
-	)
-{
+) {
 	$IP = $_POST['ip_input'];
 	$CIDR = $_POST['cidr_input'];
 	$netmask = "";
@@ -19,33 +23,18 @@ if (
 	$host_final = "";
 	$broadcast = "";
 
-	$Atributos = new AtributosIP
-							(
-								$IP, 
-								$CIDR, 
-								$netmask, 
-								$host_inicial,
-								$host_final,
-								$broadcast
-							);
-}
-else
-{
+	$Atributos = new AtributosIP(
+		$IP,
+		$CIDR,
+		$netmask,
+		$host_inicial,
+		$host_final,
+		$broadcast
+	);
+} else {
 	echo "Ocorreu algum erro";
 }
 
-/*$Atributos = new AtributosIP(
-								$_POST['ip_input'], 
-								$_POST['cidr_input'], 
-								$_POST['netmask_input'], 
-								$_POST['host_inicial_input'],
-								$_POST['host_final_input'],
-								$_POST['broadcast']
-							);*/
-
-
-//print_r($Atributos->ExplodirIP('255.255.255.0')[0]);
-//$Atributos->ExplodirIP($IP);
 ?>
 
 <div class="container">

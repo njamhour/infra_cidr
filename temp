@@ -1,0 +1,48 @@
+/*$Atributos = new AtributosIP(
+								$_POST['ip_input'], 
+								$_POST['cidr_input'], 
+								$_POST['netmask_input'], 
+								$_POST['host_inicial_input'],
+								$_POST['host_final_input'],
+								$_POST['broadcast']
+							);*/
+
+
+//print_r($Atributos->ExplodirIP('255.255.255.0')[0]);
+//$Atributos->ExplodirIP($IP);
+
+//$Atributo = new AtributosIP('192.168.0.100', '25', '255.255.255.0');
+
+	/*function ValidarRequisitos($RequisitoUm, $RequisitoDois)
+	{
+		if (
+			isset($RequisitoUm) && !empty($RequisitoUm)
+			&&
+			isset($RequisitoDois) && !empty($RequisitoDois)
+		) {
+			$Instanciar = 1;
+		} else {
+			$Instanciar = 0;
+		}
+		switch ($Instanciar) {
+			case 0:
+				header("Location: index.php");
+				break;
+			case 1:
+				$IP = $RequisitoUm;
+				$CIDR = $RequisitoDois;
+				$Atributos = new AtributosIP($IP, $CIDR, "", "", "", "");
+				//($ip, $cidr, $netmask, $host_inicial, $host_final, $broadcast);
+				return $Atributos;
+				break;
+			default:
+				header("Location: www.terra.com.br");
+		}
+	}*/
+
+    require('includes/functions.php');
+
+	//$Atributos = new AtributosIP("", "", "", "", "", "");
+
+//ValidarRequisitos($_POST['ip_input'], $_POST['cidr_input']);
+//ValidarRequisitos("192.168.20.20", 24);
