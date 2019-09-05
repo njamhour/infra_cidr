@@ -168,7 +168,7 @@ class AtributosIP
 				return $NETMASK;
 
 			default:
-				$NETMASK = "255.0.0.0";
+				$NETMASK = "ERRO!";
 				return $NETMASK;
 				break;
 		}
