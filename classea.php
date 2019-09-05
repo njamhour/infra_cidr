@@ -30,15 +30,31 @@ $p = 255;
 $a = 0;
 $b = 0;
 $c = 0;
-for ($y = 7; $y != 0; $y--) {
-    $a = $a + pow(2, $y);
-    echo $p . "." . $a . "." . $b . "." . $c;
+$CidrA = 8;
+$CidrB = 17;
+$CidrC = 25;
+for ($y = 9; $y != 0; $y--) {
+    echo $p . "." . $a . "." . $b . "." . $c . " - Classe A - /" . $CidrA;
+    $a = $a + pow(2, $y-2);
     echo "</br>";
+    $CidrA++;
+
 }
 if ($a = 255) {
-    for ($z = 7; $z >= 0; $z--) {
-        $b = $b + pow(2, $z);
-        echo $p . "." . $a . "." . $b . "." . $c;
+    for ($z = 9; $z >= 0; $z--) {
+        echo $p . "." . $a . "." . $b . "." . $c . " - Classe B - /" . $CidrB;
+        $b = $b + pow(2, $z-2);
+
         echo "</br>";
+        $CidrB++;
+    }
+}
+if ($b = 255)
+{
+    for ($t = 9; $t >= 0; $t--){
+        $c = $c + pow(2, $t-2);
+        echo $p . "." . $a . "." . $b . "." . $c . " - Classe C - /" . $CidrC;
+        echo "<br>";
+        $CidrC++;
     }
 }
