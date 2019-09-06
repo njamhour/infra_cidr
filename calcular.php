@@ -3,33 +3,36 @@
 require('classes/atributos.class.php');
 require('includes/header.php');
 
+$ip_rede = $_POST['input_ip_rede'];
+$host_inicial = $_POST['input_host_inicial'];
+$netmask = $_POST['input_netmask'];
+$qtd_ips = $_POST['input_qtd_ips'];
+$qtd_grupos = $_POST['input_qtd_grupos'];
+$broadcast = $_POST['input_broadcast'];
+$host_final = $_POST['input_host_final'];
+$cidr = $_POST['input_cidr'];
+$qtd_hosts = $_POST['input_qtd_hosts'];
+$grupo = $_POST['input_grupo'];
 
-//$Atributos = new AtributosIP("", "", "", "", "", "");
-
-//ValidarRequisitos($_POST['ip_input'], $_POST['cidr_input']);
-//ValidarRequisitos("192.168.20.20", 24);
 // Requisitos necessários para realizar os calculos
-
 // Primeiro requisito, IP e CIDR
 if (
-	isset($_POST['ip_input']) && !empty($_POST['ip_input'])
+	isset($ip_rede) && !empty($ip_rede)
 	&&
-	isset($_POST['cidr_input']) && !empty($_POST['cidr_input'])
-) {
-	$IP = $_POST['ip_input'];
-	$CIDR = $_POST['cidr_input'];
-	$netmask = "";
-	$host_inicial = "";
-	$host_final = "";
-	$broadcast = "";
+	isset($cidr) && !empty($cidr)
+){
 
 	$Atributos = new AtributosIP(
-		$IP,
-		$CIDR,
-		$netmask,
+		$ip_rede,
 		$host_inicial,
+		$netmask,
+		$qtd_ips,
+		$qtd_grupos,
+		$broadcast,
 		$host_final,
-		$broadcast
+		$cidr,
+		$qtd_hosts,
+		$grupo
 	);
 } else {
 	echo "Ocorreu algum erro";
@@ -42,17 +45,39 @@ if (
 	<h4>Informações Gerais</h4>
 	<table class="table table-hover table-bordered table-stripped">
 		<tr>
-			<th>Endereço IP</th>
-			<th>CIDR</th>
-			<th>NETMASK</th>
+			<th>IP de Rede</th>
+			<th>Host Inicial</th>
+			<th>Netmask</th>
+			<th>Quantidade IPs</th>
+			<th>Quantidade Grupos</th>
 		</tr>
 
 		<tr>
-			<td><?php echo $Atributos->IP ?></td>
-			<td><?php echo $Atributos->CIDR ?></td>
-			<td><?php echo $Atributos->CalcularNetmask($CIDR) ?></td>
+			<td><?php echo $Atributos->ip_rede ?></td>
+			<td><?php echo $Atributos->host_inicial ?></td>
+			<td><?php echo $Atributos->CalcularNetmask($cidr) ?></td>
+			<td><?php echo $Atributos->qtd_ips ?></td>
+			<td><?php echo $Atributos->ip_rede ?></td>
 		</tr>
-	</table>
+		</table>
+		<table class="table table-hover table-bordered table-stripped">
+
+		<tr>
+			<th>Broadcast</th>
+			<th>Host Final</th>
+			<th>CIDR</th>
+			<th>Quantidade Hosts</th>
+			<th>Grupo</th>
+		</tr>
+
+		<tr>
+			<td><?php echo $Atributos->broadcast ?></td>
+			<td><?php echo $Atributos->host_final ?></td>
+			<td><?php echo $Atributos->cidr ?></td>
+			<td><?php echo $Atributos->qtd_hosts ?></td>
+			<td><?php echo $Atributos->grupo ?></td>
+		</tr>
+		</table>
 
 	<hr>
 

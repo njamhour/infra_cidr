@@ -8,34 +8,65 @@ require('includes/header.php');
 ?>
 <hr>
 <div class="container">
-	<form method="POST" action="calcular.php">
+	<form method="POST" action="calcular.php" id="form" name="form">
 		<div class="form-row">
-			<div class="form group col-md-5">
-				<label for="ip_input"><b>Endereço IP</b></label>
-				<input type="text" name="ip_input" id="ip_input" class="form-control" placeholder="192.168.0.10">
+
+			<div class="form-group col-md-2">
+				<label for="input_ip_rede"><b>IP de rede</b></label>
+				<input type="text" name="input_ip_rede" id="input_ip_rede" class="form-control" placeholder="192.168.0.0">
 			</div>
-			<div class="form group col-md-5">
-				<label for="netmask_input"><b>Netmask:</b></label>
-				<input type="text" name="netmask_input" id="netmask_input" class="form-control" placeholder="255.255.255.0">
+
+
+			<div class="form-group col-md-2">
+				<label for="input_host_inicial"><b>Host Inicial</b></label>
+				<input type="text" name="input_host_inicial" id="input_host_inicial" class="form-control" placeholder="192.168.0.2">
 			</div>
-			<div class="form group col-md-2">
-				<label for="cidr_input"><b>CIDR:</b></label>
-				<input type="number" name="cidr_input" id="cidr_input" class="form-control" placeholder="24">
+
+
+			<div class="form-group col-md-2">
+				<label for="input_netmask"><b>Netmask:</b></label>
+				<input type="text" name="input_netmask" id="input_netmask" class="form-control" placeholder="255.255.255.0">
+			</div>
+
+			<div class="form-group col-md-2">
+				<label for="input_qtd_ips"><b>Quantidade IPs</b></label>
+				<input type="text" name="input_qtd_ips" id="input_qtd_ips" class="form-control" placeholder="0">
+			</div>
+
+			<div class="form-group col-md-2">
+				<label for="input_qtd_grupos"><b>Quantidade Grupos</b></label>
+				<input type="text" name="input_qtd_grupos" id="input_qtd_grupos" class="form-control" placeholder="0">
 			</div>
 		</div>
+
+
 		<div class="form-row">
-			<div class="form group col-md-4">
-				<label for="ip_input"><b>Host Inicial:</b></label>
-				<input type="text" name="host_inicial_input" id="ip_input" class="form-control" placeholder="192.168.0.2">
+			<div class="form-group col-md-2">
+				<label for="input_broadcast"><b>Broadcast</b></label>
+				<input type="text" name="input_broadcast" id="input_broadcast" class="form-control" placeholder="255.255.255.0">
 			</div>
-			<div class="form group col-md-4">
-				<label for="netmask_input"><b>Host Final:</b></label>
-				<input type="text" name="host_final_input" id="netmask_input" class="form-control" placeholder="192.168.0.254">
+
+			<div class="form-group col-md-2">
+				<label for="input_host_final"><b>Host Final</b></label>
+				<input type="text" name="input_host_final" id="input_host_final" class="form-control" placeholder="192.168.0.254">
 			</div>
-			<div class="form group col-md-4">
-				<label for="cidr_input"><b>Broadcast</b></label>
-				<input type="number" name="broadcast_input" id="cidr_input" class="form-control" placeholder="192.168.0.255">
+
+			<div class="form-group col-md-2">
+				<label for="input_cidr"><b>CIDR</b></label>
+				<input type="text" name="input_cidr" id="input_cidr" class="form-control" placeholder="32">
 			</div>
+
+			<div class="form-group col-md-2">
+				<label for="input_qtd_hosts"><b>Quantidade Hosts</b></label>
+				<input type="text" name="input_qtd_hosts" id="input_qtd_hosts" class="form-control" placeholder="0">
+			</div>
+
+			<div class="form-group col-md-2">
+				<label for="input_grupo"><b>Grupo</b></label>
+				<input type="text" name="input_grupo" id="input_grupo" class="form-control" placeholder="0">
+			</div>
+
+
 		</div>
 		<div class=form-group>
 			<button type="submit" class="btn btn-primary">Calcular</button>

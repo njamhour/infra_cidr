@@ -2,182 +2,119 @@
 
 class AtributosIP
 {
-	public $IP;
-	public $CIDR;
-	public $NETMASK;
-	public $HOST_INICIAL;
-	public $HOST_FINAL;
-	public $BROADCAST;
-	public $SPLIT_IP;
+	public $ip_rede;
+	public $host_inicial;
+	public $netmask;
+	public $qtd_ips;
+	public $qtd_grupos;
+	public $broadcast;
+	public $host_final;
+	public $cidr;
+	public $qtd_hosts;
+	public $grupo;
 
 
-	function __construct($IP, $CIDR, $NETMASK, $HOST_INICIAL, $HOST_FINAL, $BROADCAST)
+	function __construct(
+												$ip_rede, 
+											 	$host_inicial, 
+											 	$netmask, 
+											 	$qtd_ips, 
+											 	$qtd_grupos, 
+											 	$broadcast,
+											 	$host_final,
+											 	$cidr,
+											 	$qtd_hosts,
+											 	$grupo
+											)
+
 	{
-		$this->IP = $IP;
-		$this->CIDR = $CIDR;
-		$this->NETMASK = $NETMASK;
-		$this->HOST_INICIAL = $HOST_INICIAL;
-		$this->HOST_FINAL = $HOST_FINAL;
-		$this->BROADCAST = $BROADCAST;
-		//$this->SPLIT_IP = $SPLIT_IP;
+
+		$this->ip_rede				= 	 $ip_rede;
+		$this->host_inicial 	=		 $host_inicial;
+		$this->netmask 				= 	 $netmask;
+		$this->qtd_ips 				= 	 $qtd_ips;
+		$this->qtd_grupos 		= 	 $qtd_grupos;
+		$this->broadcast 			= 	 $broadcast;
+		$this->host_final 		= 	 $host_final;
+		$this->cidr 					= 	 $cidr;
+		$this->qtd_hosts 			= 	 $qtd_hosts;
+		$this->grupo 					=  	 $grupo;
+		
 
 
-		$this->ExplodirIP($IP);
+		$this->ExplodirIP($ip_rede);
 		//$this->ValidarRequisitos($RequisitoUm, $RequisitoDois);
 	}
 
 	// Função para DEBUG
 	function RetornarAtributos(): void
 	{
-		echo $this->IP . " " . $this->CIDR . " " . $this->NETMASK;
+		echo $this->ip_rede . " " . $this->cidr . " " . $this->netmask;
 	}
 
 	// "Explode" o IP utilizando como separador o '.', trazendo 4 numeros separados
-	function ExplodirIP($IP)
+	function ExplodirIP($ip_rede)
 	{
-		$this->SPLIT_IP = preg_split("/\./", $IP);
-		return $this->SPLIT_IP;
+		$this->split_ip = preg_split("/\./", $ip_rede);
+		return $this->split_ip;
 	}
 
 	// Realizar o calculo da mascara de rede de acordo com o CIDR
-	function CalcularNetmask($CIDR)
+	function CalcularNetmask($cidr)
 	{
-		switch ($CIDR) {
-			case 8:
-				$NETMASK = "255.0.0.0";
-				return $NETMASK;
-				break;
+		$Netmask_A = "255.0.0.0";
+		$Netmask_B = "255.255.0.0";
+		$Netmask_C = "255.255.255.0";
+		$Cidr_Inicial_A = 8;
+		$Cidr_Inicial_B = 16;
+		$Cidr_Inicial_C = 24;
+		$ExplodirA = preg_split("/\./", $Netmask_A);
+		$ExplodirB = preg_split("/\./", $Netmask_B);
+		$ExplodirC = preg_split("/\./", $Netmask_C);
+		$i = 9;
 
-			case 9:
-				$NETMASK = "255.128.0.0";
-				return $NETMASK;
-				break;
+		if ($cidr >=8 && $cidr <= 15)
+		{
+			while($Cidr_Inicial_A != $cidr)
+			{
+					$ExplodirA[1] = $ExplodirA[1] + pow(2, $i - 2);
+					$Netmask_A = $ExplodirA[0] . "." . $ExplodirA[1] . "." . $ExplodirA[2] . "." . $ExplodirA[3];
+					$Cidr_Inicial_A++;
+					$a--;			
+			}
+			return $Netmask_A;	
+		}
 
-			case 10:
-				$NETMASK = "255.192.0.0";
-				return $NETMASK;
-				break;
+		if ($cidr >=16 && $cidr <= 23)
+		{
+			while($Cidr_Inicial_B != $cidr)
+			{
+					$ExplodirB[2] = $ExplodirB[2] + pow(2, $i - 2);
+					$Netmask_B = $ExplodirB[0] . "." . $ExplodirB[1] . "." . $ExplodirB[2] . "." . $ExplodirB[3];
+					$Cidr_Inicial_B++;
+					$i--;
+			}
+			return $Netmask_B;	
+		}
 
-			case 11:
-				$NETMASK = "255.224.0.0";
-				return $NETMASK;
-				break;
-
-			case 12:
-				$NETMASK = "255.240.0.0";
-				return $NETMASK;
-				break;
-
-			case 13:
-				$NETMASK = "255.248.0.0";
-				return $NETMASK;
-				break;
-
-			case 14:
-				$NETMASK = "255.252.0.0";
-				return $NETMASK;
-				break;
-
-			case 15:
-				$NETMASK = "255.254.0.0";
-				return $NETMASK;
-				break;
-
-			case 16:
-				$NETMASK = "255.255.0.0";
-				return $NETMASK;
-				break;
-
-			case 17:
-				$NETMASK = "255.255.128.0";
-				return $NETMASK;
-				break;
-
-			case 18:
-				$NETMASK = "255.255.192.0";
-				return $NETMASK;
-				break;
-
-			case 19:
-				$NETMASK = "255.255.224.0";
-				return $NETMASK;
-				break;
-
-			case 20:
-				$NETMASK = "255.255.240.0";
-				return $NETMASK;
-				break;
-
-			case 21:
-				$NETMASK = "255.255.248.0";
-				return $NETMASK;
-				break;
-
-			case 22:
-				$NETMASK = "255.255.252.0";
-				return $NETMASK;
-				break;
-
-			case 23:
-				$NETMASK = "255.255.254.0";
-				return $NETMASK;
-				break;
-
-			case 24:
-				$NETMASK = "255.255.255.0";
-				return $NETMASK;
-				break;
-
-			case 25:
-				$NETMASK = "255.255.255.128";
-				return $NETMASK;
-				break;
-
-			case 26:
-				$NETMASK = "255.255.255.192";
-				return $NETMASK;
-				break;
-
-			case 27:
-				$NETMASK = "255.255.255.224";
-				return $NETMASK;
-				break;
-
-			case 28:
-				$NETMASK = "255.255.255.240";
-				return $NETMASK;
-				break;
-
-			case 29:
-				$NETMASK = "255.255.255.248";
-				return $NETMASK;
-				break;
-
-			case 30:
-				$NETMASK = "255.255.255.252";
-				return $NETMASK;
-				break;
-
-			case 31:
-				$NETMASK = "255.255.255.254";
-				return $NETMASK;
-				break;
-
-			case 32:
-				$NETMASK = "255.255.255.255";
-				return $NETMASK;
-
-			default:
-				$NETMASK = "ERRO!";
-				return $NETMASK;
-				break;
+		if ($cidr >=24 && $cidr <= 32)
+		{
+			while($Cidr_Inicial_C != $cidr)
+			{
+					$ExplodirC[3] = $ExplodirC[3] + pow(2, $i - 2);
+					$Netmask_C = $ExplodirC[0] . "." . $ExplodirC[1] . "." . $ExplodirC[2] . "." . $ExplodirC[3];
+					$Cidr_Inicial_C++;
+					$i--;
+			}
+			return $Netmask_C;	
 		}
 	}
+
 	// Função para realizar a conversão do IP para forma binaria, completando com '0'
 	// caso não tenha 8 digitos
 	function RetornarOctetoBinario($octeto)
 	{
-		$ValorBinario = decbin($this->SPLIT_IP[$octeto]);
+		$ValorBinario = decbin($this->split_ip[$octeto]);
 		if (strlen($ValorBinario) < 8) {
 			while (strlen($ValorBinario) < 8) {
 				$ValorBinario = "0" . $ValorBinario;
@@ -189,6 +126,25 @@ class AtributosIP
 	// Função para retornar octeto decimal
 	function RetornarOcteto($octeto)
 	{
-		echo $this->SPLIT_IP[$octeto];
+		echo $this->split_ip[$octeto];
+	}
+
+	// Essa função não vai funcionar dessa forma..
+	function ValidarEntradas($ip_rede, $cidr)
+	{
+		if(isset($ip_rede) && !empty($ip_rede) && (isset($cidr) && !empty($cidr)))
+		{
+			$Atributos = new AtributosIP(		
+			$ip_rede,
+			$host_inicial,
+			$netmask,
+			$qtd_ips,
+			$qtd_grupos,
+			$broadcast,
+			$host_final,
+			$cidr,
+			$qtd_hosts,
+			$grupo);
+		}
 	}
 }
