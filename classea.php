@@ -4,45 +4,17 @@ require('includes/header.php');
 $MascaraInicial = "255.0.0.0";
 $Split_Mascara = preg_split("/\./", $MascaraInicial);
 
-$VariacaoHost = "1.256.256.256";
-$Split_Host = preg_split("/\./", $VariacaoHost);
-
-echo "1 -" . $Split_Mascara[0] . "<br>";
+/*echo "1 -" . $Split_Mascara[0] . "<br>";
 echo "2 -" . $Split_Mascara[1] . "<br>";
 echo "3 -" . $Split_Mascara[2] . "<br>";
-echo "4 -" . $Split_Mascara[3] . "<br>";
-
-echo $Split_Mascara[0] . "." . $Split_Mascara[1] . "." . $Split_Mascara[2] . "." . $Split_Mascara[3];
-echo "<br>";
-echo $Split_Host[0] . "." . $Split_Host[1] . "." . $Split_Host[2] . "." . $Split_Host[3];
-echo "<br>";
-
-/*while ($Split_Mascara[1] <= 256) {
-    $x = 6;
-    echo $Split_Mascara[0] . "." . $Split_Mascara[1] . "." . $Split_Mascara[2] . "." . $Split_Mascara[3];
-    echo "<br>";
-    $Split_Mascara[1] = $Split_Mascara[1] + pow(2, $x);
-    $x--;
-    echo "<br>";
-}*/
-echo "<br>";
-$p = 255;
-$a = 0;
-$b = 0;
-$c = 0;
+echo "4 -" . $Split_Mascara[3] . "<br>";*/
 $CidrA = 8;
 $CidrB = 16;
 $CidrC = 24;
 
 for ($y = 9; $y != 1; $y--) {
-    echo $p . "." . $a . "." . $b . "." . $c . " - Classe A - /" . $CidrA;
-    /*echo "<br>";
-    echo $a . "A";
-    echo "<br>";
-    echo $b . "B";
-    echo "<br>";
-    echo $c . "C";*/
-    $a = $a + pow(2, $y - 2);
+    echo $Split_Mascara[0] . "." . $Split_Mascara[1] . "." . $Split_Mascara[2] . "." . $Split_Mascara[3] . " - Classe A - /" . $CidrA;
+    $Split_Mascara[1] = $Split_Mascara[1] + pow(2, $y - 2);
     echo "</br>";
     $CidrA++;
 }
@@ -50,14 +22,8 @@ for ($y = 9; $y != 1; $y--) {
 echo "<hr>";
 if ($a = 255) {
     for ($z = 9; $z != 1; $z--) {
-        echo $p . "." . $a . "." . $b . "." . $c . " - Classe B - /" . $CidrB;
-        /*echo "<br>";
-        echo $a . "A";
-        echo "<br>";
-        echo $b . "B";
-        echo "<br>";
-        echo $c . "C";*/
-        $b = $b + pow(2, $z - 2);
+        echo $Split_Mascara[0] . "." . $Split_Mascara[1] . "." . $Split_Mascara[2] . "." . $Split_Mascara[3] . " - Classe B - /" . $CidrB;
+        $Split_Mascara[2] = $Split_Mascara[2] + pow(2, $z - 2);
         echo "</br>";
         $CidrB++;
     }
@@ -65,21 +31,14 @@ if ($a = 255) {
 echo "<hr>";
 if ($b = 255) {
     for ($t = 9; $t != 1; $t--) {
-        echo $p . "." . $a . "." . $b . "." . $c . " - Classe C - /" . $CidrC;
-        $c = $c + pow(2, $t - 2);
-        /*echo "<br>";
-        echo $a . "A";
-        echo "<br>";
-        echo $b . "B";
-        echo "<br>";
-        echo $c . "C";
-        echo "<br>";*/
+        echo $Split_Mascara[0] . "." . $Split_Mascara[1] . "." . $Split_Mascara[2] . "." . $Split_Mascara[3] . " - Classe C - /" . $CidrC;
+        $Split_Mascara[3] = $Split_Mascara[3] + pow(2, $t - 2);
         echo "<br>";
         $CidrC++;
     }
 }
 if ($c = 255) {
-    echo $p . "." . $a . "." . $b . "." . $c . " - Classe C - /" . $CidrC;
+    echo $Split_Mascara[0] . "." . $Split_Mascara[1] . "." . $Split_Mascara[2] . "." . $Split_Mascara[3] . " - Classe C - /" . $CidrC;
 }
 echo "<br>";
 ?>
