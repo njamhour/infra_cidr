@@ -31,32 +31,56 @@ $a = 0;
 $b = 0;
 $c = 0;
 $CidrA = 8;
-$CidrB = 17;
-$CidrC = 25;
-for ($y = 9; $y != 0; $y--) {
+$CidrB = 16;
+$CidrC = 24;
+
+for ($y = 9; $y != 1; $y--) {
     echo $p . "." . $a . "." . $b . "." . $c . " - Classe A - /" . $CidrA;
-    $a = $a + pow(2, $y-2);
+    /*echo "<br>";
+    echo $a . "A";
+    echo "<br>";
+    echo $b . "B";
+    echo "<br>";
+    echo $c . "C";*/
+    $a = $a + pow(2, $y - 2);
     echo "</br>";
     $CidrA++;
-
 }
-if ($a = 255) {
-    for ($z = 9; $z >= 0; $z--) {
-        echo $p . "." . $a . "." . $b . "." . $c . " - Classe B - /" . $CidrB;
-        $b = $b + pow(2, $z-2);
 
+echo "<hr>";
+if ($a = 255) {
+    for ($z = 9; $z != 1; $z--) {
+        echo $p . "." . $a . "." . $b . "." . $c . " - Classe B - /" . $CidrB;
+        /*echo "<br>";
+        echo $a . "A";
+        echo "<br>";
+        echo $b . "B";
+        echo "<br>";
+        echo $c . "C";*/
+        $b = $b + pow(2, $z - 2);
         echo "</br>";
         $CidrB++;
     }
 }
-if ($b = 255)
-{
-    for ($t = 9; $t >= 0; $t--){
-        $c = $c + pow(2, $t-2);
+echo "<hr>";
+if ($b = 255) {
+    for ($t = 9; $t != 1; $t--) {
         echo $p . "." . $a . "." . $b . "." . $c . " - Classe C - /" . $CidrC;
+        $c = $c + pow(2, $t - 2);
+        /*echo "<br>";
+        echo $a . "A";
+        echo "<br>";
+        echo $b . "B";
+        echo "<br>";
+        echo $c . "C";
+        echo "<br>";*/
         echo "<br>";
         $CidrC++;
     }
 }
+if ($c = 255) {
+    echo $p . "." . $a . "." . $b . "." . $c . " - Classe C - /" . $CidrC;
+}
+echo "<br>";
 ?>
 <a href="http://www.netadm.com.br/tabela-cidr/">Tabela Cidr</a>
