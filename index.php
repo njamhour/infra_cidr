@@ -53,7 +53,7 @@ require('includes/header.php');
 
 			<div class="form-group col-md-2">
 				<label for="input_cidr"><b>CIDR</b></label>
-				<input type="text" name="input_cidr" id="input_cidr" class="form-control" placeholder="32">
+				<input type="number" name="input_cidr" id="input_cidr" class="form-control" placeholder="32" min="8" max="31">
 			</div>
 
 			<div class="form-group col-md-2">
@@ -72,4 +72,7 @@ require('includes/header.php');
 			<button type="submit" class="btn btn-primary">Calcular</button>
 		</div>
 	</form>
+	<h3>Combinações Não Possiveis</h3>
+	<p>Ip de Rede + Primeiro Ip</p>
+	<p>Ip Final + Broadcast</p>
 </div>

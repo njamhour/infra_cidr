@@ -1,5 +1,5 @@
 <?php
-function ValidarRequisitos($RequisitoUm, $RequisitoDois)
+/*function ValidarRequisitos($RequisitoUm, $RequisitoDois)
 {
     if (
         isset($RequisitoUm) && !empty($RequisitoUm)
@@ -23,5 +23,5 @@ function ValidarRequisitos($RequisitoUm, $RequisitoDois)
             break;
         default:
             header("Location: www.terra.com.br");
-    }
+    }*/
 }

@@ -20,8 +20,7 @@ if (
 	isset($ip_rede) && !empty($ip_rede)
 	&&
 	isset($cidr) && !empty($cidr)
-){
-
+) {
 	$Atributos = new AtributosIP(
 		$ip_rede,
 		$host_inicial,
@@ -45,10 +44,10 @@ if (
 	<h4>Informações Gerais</h4>
 	<table class="table table-hover table-bordered table-stripped">
 		<tr>
-			<th>IP de Rede</th>
+			<th>Ip de Rede</th>
 			<th>Host Inicial</th>
 			<th>Netmask</th>
-			<th>Quantidade IPs</th>
+			<th>Quantidade Ips</th>
 			<th>Quantidade Grupos</th>
 		</tr>
 
@@ -56,12 +55,12 @@ if (
 			<td><?php echo $Atributos->ip_rede ?></td>
 			<td><?php echo $Atributos->host_inicial ?></td>
 			<td><?php echo $Atributos->CalcularNetmask($cidr) ?></td>
-			<td><?php echo $Atributos->qtd_ips ?></td>
-			<td><?php echo $Atributos->ip_rede ?></td>
+			<td><?php echo $Atributos->CalcularQuantidadeIps($Atributos->CalcularNetmask($cidr)) ?></td>
+			<td><?php echo $Atributos->qtd_grupos ?></td>
 		</tr>
-		</table>
-		<table class="table table-hover table-bordered table-stripped">
+	</table>
 
+	<table class="table table-hover table-bordered table-stripped">
 		<tr>
 			<th>Broadcast</th>
 			<th>Host Final</th>
@@ -72,29 +71,14 @@ if (
 
 		<tr>
 			<td><?php echo $Atributos->broadcast ?></td>
-			<td><?php echo $Atributos->host_final ?></td>
+			<td><?php echo $Atributos->host_inicial ?></td>
 			<td><?php echo $Atributos->cidr ?></td>
-			<td><?php echo $Atributos->qtd_hosts ?></td>
+			<td><?php echo $Atributos->CalcularQuantidadeIps($Atributos->CalcularNetmask($cidr)) - 2 ?></td>
 			<td><?php echo $Atributos->grupo ?></td>
 		</tr>
-		</table>
-
-	<hr>
-
-	<h4>Informações Adicionais</h4>
-	<table class="table table-hover table-bordered table-stripped">
-		<tr>
-			<th>IP Inicial</th>
-			<th>IP Final</th>
-			<th>Quantidade de Grupos</th>
-		</tr>
-
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
 	</table>
+
+
 
 	<hr>
 
