@@ -27,16 +27,16 @@ class AtributosIP
 		$grupo
 	) {
 
-		$this->ip_rede				= 	 $ip_rede;
-		$this->host_inicial 		=	 $host_inicial;
-		$this->netmask 				= 	 $netmask;
-		$this->qtd_ips 				= 	 $qtd_ips;
-		$this->qtd_grupos 			= 	 $qtd_grupos;
-		$this->broadcast 			= 	 $broadcast;
-		$this->host_final 			= 	 $host_final;
-		$this->cidr 				= 	 $cidr;
-		$this->qtd_hosts 			= 	 $qtd_hosts;
-		$this->grupo 				=  	 $grupo;
+		$this->ip_rede = $ip_rede;
+		$this->host_inicial = $host_inicial;
+		$this->netmask = $netmask;
+		$this->qtd_ips = $qtd_ips;
+		$this->qtd_grupos = $qtd_grupos;
+		$this->broadcast = $broadcast;
+		$this->host_final = $host_final;
+		$this->cidr = $cidr;
+		$this->qtd_hosts = $qtd_hosts;
+		$this->grupo = $grupo;
 
 
 
@@ -131,6 +131,7 @@ class AtributosIP
 		$Split_Netmask = preg_split("/\./", $Netmask);
 		if ($Split_Netmask[1] != 255) {
 			$TotalIps_A = 1 * (256 - $Split_Netmask[1]) * 256 * 256;
+
 			return $TotalIps_A;
 		}
 
@@ -142,6 +143,23 @@ class AtributosIP
 		if ($Split_Netmask[3] != 255 && $Split_Netmask[2] = 255 && $Split_Netmask[1] = 255) {
 			$TotalIps_C = 1 * 1 * 1 * (256 - $Split_Netmask[3]);
 			return $TotalIps_C;
+		}
+	}
+
+	function CalcularQuantidadeGrupos($Netmask)
+	{
+		$Split_Netmask = preg_split("/\./", $Netmask);
+		if ($Split_Netmask[1] != 255) {
+			return 256 - $Split_Netmask[1];
+		}
+
+		if ($Split_Netmask[2] != 255) {
+			return 256 - $Split_Netmask[2];
+		}
+
+		if ($Split_Netmask[3] != 255) {
+
+			return 256 - $Split_Netmask[3];
 		}
 	}
 }

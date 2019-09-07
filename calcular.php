@@ -56,7 +56,7 @@ if (
 			<td><?php echo $Atributos->host_inicial ?></td>
 			<td><?php echo $Atributos->CalcularNetmask($cidr) ?></td>
 			<td><?php echo $Atributos->CalcularQuantidadeIps($Atributos->CalcularNetmask($cidr)) ?></td>
-			<td><?php echo $Atributos->qtd_grupos ?></td>
+			<td><?php echo $Atributos->CalcularQuantidadeGrupos($Atributos->CalcularNetmask($cidr)) ?></td>
 		</tr>
 	</table>
 
