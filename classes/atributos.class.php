@@ -146,6 +146,7 @@ class AtributosIP
 		}
 	}
 
+	// Realiza o calculo de quantidade de grupos pela netmask
 	function CalcularQuantidadeGrupos($Netmask)
 	{
 		$Split_Netmask = preg_split("/\./", $Netmask);
@@ -160,6 +161,33 @@ class AtributosIP
 		if ($Split_Netmask[3] != 255) {
 
 			return 256 - $Split_Netmask[3];
+		}
+	}
+
+	function CalcularBroadcast($ip_rede, $netmask, $cidr)
+	{
+		$Split_Ip = preg_split("/\./", $ip_rede);
+		$Split_Netmask = preg_split("/\./", $netmask);
+
+		// Classe A
+		if ($cidr >= 8 && $cidr <= 15) {
+			$Calculo_Broad = 255 - $Split_Netmask[1];
+			$Broadcast = $Split_Ip[0] . "." . $Calculo_Broad . ".255" . ".255";
+			return $Broadcast;
+		}
+
+		// Classe B
+		if ($cidr >= 16 && $cidr <= 23) {
+			$Calculo_Broad = 255 - $Split_Netmask[2];
+			$Broadcast = $Split_Ip[0] . "." . $Split_Ip[1] . "." . $Calculo_Broad . ".255";
+			return $Broadcast;
+		}
+
+		// Classe C
+		if ($cidr >= 24) {
+			$Calculo_Broad = 255 - $Split_Netmask[3];
+			$Broadcast = $Split_Ip[0] . "." . $Split_Ip[1] . "." . $Split_Ip[2] . "." . $Calculo_Broad;
+			return $Broadcast;
 		}
 	}
 }

@@ -70,7 +70,7 @@ if (
 		</tr>
 
 		<tr>
-			<td><?php echo $Atributos->broadcast ?></td>
+			<td><?php echo $Atributos->CalcularBroadcast($Atributos->ip_rede, ($Atributos->CalcularNetmask($cidr)), $Atributos->cidr) ?></td>
 			<td><?php echo $Atributos->host_inicial ?></td>
 			<td><?php echo $Atributos->cidr ?></td>
 			<td><?php echo $Atributos->CalcularQuantidadeIps($Atributos->CalcularNetmask($cidr)) - 2 ?></td>
