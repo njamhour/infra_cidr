@@ -45,7 +45,7 @@ class AtributosIP
 	}
 
 	// Função para DEBUG
-	function RetornarAtributos(): void
+	function RetornarAtributos()
 	{
 		echo $this->ip_rede . " " . $this->cidr . " " . $this->netmask;
 	}
@@ -147,20 +147,28 @@ class AtributosIP
 	}
 
 	// Realiza o calculo de quantidade de grupos pela netmask
+	// Transforma a mascara em binario, conta a quantidade de '1' existentes
+	// e faz 2 elevado a esse número
 	function CalcularQuantidadeGrupos($Netmask)
 	{
 		$Split_Netmask = preg_split("/\./", $Netmask);
 		if ($Split_Netmask[1] != 255) {
-			return 256 - $Split_Netmask[1];
+
+			$Binary_Netmask = decbin($Split_Netmask[1]);
+			$Total_Binary = substr_count($Binary_Netmask, "1");
+			return pow(2, $Total_Binary);
 		}
 
 		if ($Split_Netmask[2] != 255) {
-			return 256 - $Split_Netmask[2];
+			$Binary_Netmask = decbin($Split_Netmask[2]);
+			$Total_Binary = substr_count($Binary_Netmask, "1");
+			return pow(2, $Total_Binary);
 		}
 
 		if ($Split_Netmask[3] != 255) {
-
-			return 256 - $Split_Netmask[3];
+			$Binary_Netmask = decbin($Split_Netmask[3]);
+			$Total_Binary = substr_count($Binary_Netmask, "1");
+			return pow(2, $Total_Binary);
 		}
 	}
 
@@ -188,6 +196,56 @@ class AtributosIP
 			$Calculo_Broad = 255 - $Split_Netmask[3];
 			$Broadcast = $Split_Ip[0] . "." . $Split_Ip[1] . "." . $Split_Ip[2] . "." . $Calculo_Broad;
 			return $Broadcast;
+		}
+	}
+
+	function CalcularHostFinal($ip_rede, $cidr)
+	{
+		$Split_Ip = preg_split("/\./", $ip_rede);
+		//$Split_Netmask = preg_split("/\./", $netmask);
+
+		// Classe A
+		if ($cidr >= 8 && $cidr <= 15) {
+
+			$Host_Inicial = $Split_Ip[0] . "." . (255 - [$Split_Ip[1]]) . "." . "255" . "." . "255";
+			return $Host_Inicial;
+		}
+
+		// Classe B
+		if ($cidr >= 16 && $cidr <= 23) {
+			$Host_Inicial = $Split_Ip[0] . "." . $Split_Ip[1] . "." . (255 - $Split_Ip[2]) . "." . "255";
+			return $Host_Inicial;
+		}
+
+		// Classe C
+		if ($cidr >= 24) {
+			$Host_Inicial = $Split_Ip[0] . "." . $Split_Ip[1] . "." . $Split_Ip[2] . "." . (255 - $Split_Ip[3]);
+			return $Host_Inicial;
+		}
+	}
+
+	function CalcularHostInicial($ip_rede, $netmask, $cidr)
+	{
+		$Split_Ip = preg_split("/\./", $ip_rede);
+		$Split_Netmask = preg_split("/\./", $netmask);
+
+		// Classe A
+		if ($cidr >= 8 && $cidr <= 15) {
+
+			$Host_Inicial = $Split_Ip[0] . "." . ($Split_Netmask[1] - [$Split_Ip[1]] + 2) . "." . "0" . "." . "0";
+			return $Host_Inicial;
+		}
+
+		// Classe B
+		if ($cidr >= 16 && $cidr <= 23) {
+			$Host_Inicial = $Split_Ip[0] . "." . $Split_Ip[1] . "." . ($Split_Netmask[2] - $Split_Ip[2] + 2) . "." . "0";
+			return $Host_Inicial;
+		}
+
+		// Classe C
+		if ($cidr >= 24) {
+			$Host_Inicial = $Split_Ip[0] . "." . $Split_Ip[1] . "." . $Split_Ip[2] . "." . ($Split_Netmask[3] - $Split_Ip[3] + 2);
+			return $Host_Inicial;
 		}
 	}
 }

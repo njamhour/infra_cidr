@@ -53,7 +53,7 @@ require('includes/header.php');
 
 			<div class="form-group col-md-2">
 				<label for="input_cidr"><b>CIDR</b></label>
-				<input type="number" name="input_cidr" id="input_cidr" class="form-control" placeholder="32" min="8" max="31">
+				<input type="number" name="input_cidr" id="input_cidr" class="form-control" placeholder="32" min="8" max="30">
 			</div>
 
 			<div class="form-group col-md-2">
