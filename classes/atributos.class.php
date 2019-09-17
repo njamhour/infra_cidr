@@ -199,7 +199,8 @@ class AtributosIP
 		}
 	}
 
-	function CalcularHostFinal($ip_rede, $cidr)
+	// Necessário inserir quantidade de grupos pra fazer o cálculo certo de host incial e final
+	function CalcularHostFinal($ip_rede, $cidr, $qtd_grupos)
 	{
 		$Split_Ip = preg_split("/\./", $ip_rede);
 		//$Split_Netmask = preg_split("/\./", $netmask);
@@ -224,10 +225,12 @@ class AtributosIP
 		}
 	}
 
-	function CalcularHostInicial($ip_rede, $netmask, $cidr)
+	// Necessário inserir quantidade de grupos pra fazer o cálculo certo de host incial e final
+	function CalcularHostInicial($ip_rede, $netmask, $cidr, $qtd_grupos)
 	{
 		$Split_Ip = preg_split("/\./", $ip_rede);
 		$Split_Netmask = preg_split("/\./", $netmask);
+
 
 		// Classe A
 		if ($cidr >= 8 && $cidr <= 15) {

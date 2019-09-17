@@ -64,7 +64,7 @@ if (
 
 		<tr>
 			<td><?php echo $Atributos->ip_rede ?></td>
-			<td><?php echo $Atributos->CalcularHostInicial($ip_rede, $Atributos->CalcularNetmask($cidr), $cidr) ?></td>
+			<td><?php echo $Atributos->CalcularHostInicial($ip_rede, $Atributos->CalcularNetmask($cidr), $cidr, ($Atributos->CalcularQuantidadeGrupos)) ?></td>
 			<td><?php echo $Atributos->CalcularNetmask($cidr) ?></td>
 			<td><?php echo $Atributos->CalcularQuantidadeIps($Atributos->CalcularNetmask($cidr)) ?></td>
 			<td><?php echo $Atributos->CalcularQuantidadeGrupos($Atributos->CalcularNetmask($cidr)) ?></td>
@@ -82,7 +82,7 @@ if (
 
 		<tr>
 			<td><?php echo $Atributos->CalcularBroadcast($Atributos->ip_rede, ($Atributos->CalcularNetmask($cidr)), $Atributos->cidr) ?></td>
-			<td><?php echo $Atributos->CalcularHostFinal($ip_rede, $cidr) ?></td>
+			<td><?php echo $Atributos->CalcularHostFinal($ip_rede, $cidr, ($Atributos->CalcularQuantidadeGrupos)) ?></td>
 			<td><?php echo $Atributos->cidr ?></td>
 			<td><?php echo $Atributos->CalcularQuantidadeIps($Atributos->CalcularNetmask($cidr)) - 2 ?></td>
 			<td><?php echo $Atributos->grupo ?></td>
